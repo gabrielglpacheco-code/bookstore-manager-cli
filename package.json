@@ -1,0 +1,33 @@
+{
+  "name": "bookstore-manager-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/main.ts",
+    "build": "tsc",
+    "start": "node dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielglpacheco-code/bookstore-manager-cli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/gabrielglpacheco-code/bookstore-manager-cli/issues"
+  },
+  "homepage": "https://github.com/gabrielglpacheco-code/bookstore-manager-cli#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "pg": "^8.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "@types/pg": "^8.20.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.3"
+  }
+}
