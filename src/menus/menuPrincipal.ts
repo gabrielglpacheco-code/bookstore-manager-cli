@@ -3,12 +3,14 @@ import { AutorController } from '../controllers/AutorController';
 import { LivroController } from '../controllers/LivroController';
 import { ClienteController } from '../controllers/ClienteController';
 import { EmprestimoController } from '../controllers/EmprestimoController';
+import { RelatorioController } from '../controllers/RelatorioController';
 
 export async function iniciarMenuPrincipal(): Promise<void> {
     const autorController = new AutorController();
     const livroController = new LivroController();
     const clienteController = new ClienteController();
     const emprestimoController = new EmprestimoController();
+    const relatorioController = new RelatorioController();
 
     let continuar = true;
 
@@ -18,7 +20,7 @@ export async function iniciarMenuPrincipal(): Promise<void> {
         console.log('2 - Livros');
         console.log('3 - Clientes');
         console.log('4 - Empréstimos');
-        console.log('5 - Relatórios (em breve)');
+        console.log('5 - Relatórios');
         console.log('0 - Encerrar aplicação');
 
         const opcao = await perguntar('Escolha uma opção: ');
@@ -37,7 +39,7 @@ export async function iniciarMenuPrincipal(): Promise<void> {
                 await emprestimoController.menu();
                 break;
             case '5':
-                console.log('Módulo ainda não implementado.');
+                await relatorioController.menu();
                 break;
             case '0':
                 continuar = false;
