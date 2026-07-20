@@ -73,7 +73,6 @@ export class AutorRepository {
             const resultado = await pool.query(query, [id]);
             return (resultado.rowCount ?? 0) > 0;
         } catch (error) {
-            console.error('Erro ao remover autor:', error);
             throw error
         }
     }

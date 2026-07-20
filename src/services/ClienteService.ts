@@ -66,9 +66,19 @@ export class ClienteService {
 
     async removerCliente(id: number): Promise<void> {
         await this.buscarClientePorId(id);
-        const removido = await this.clienteRepository.remover(id);
-        if (!removido) {
-            throw new Error(`Não foi possível remover o cliente com id ${id}.`);
+
+        try {
+            const removido = await this.clienteRepository.remover(id);
+            if (!removido) {
+                throw new Error(`Não foi possível remover o cliente com id ${id}.`);
+            }
+        } catch (error: any) {
+            if (error.code === '23503') {
+                throw new Error(
+                    `Não é possível remover este cliente pois existem empréstimos vinculados a ele.`
+                );
+            }
+            throw error;
         }
     }
 }

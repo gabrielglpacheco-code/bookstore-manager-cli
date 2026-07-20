@@ -84,7 +84,6 @@ export class LivroRepository {
             const resultado = await pool.query(query, [id]);
             return (resultado.rowCount ?? 0) > 0;
         } catch (error) {
-            console.error('Error ao remover livro: ', error);
             throw error;
         }
     }

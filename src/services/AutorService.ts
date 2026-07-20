@@ -43,11 +43,20 @@ export class AutorService {
     }
 
     async removerAutor(id: number): Promise<void> {
-        await this.buscarAutorPorId(id);    //Garante que o autor existe antes de tentar remover
+        await this.buscarAutorPorId(id);
 
-        const removido = await this.autorRepository.remover(id);
-        if (!removido) {
-            throw new Error(`Não foi possivel remover o autor com id ${id}.`);
+        try {
+            const removido = await this.autorRepository.remover(id);
+            if (!removido) {
+                throw new Error(`Não foi possível remover o autor com id ${id}.`);
+            }
+        } catch (error: any) {
+            if (error.code === '23503') {
+                throw new Error(
+                    `Não é possível remover este autor pois existem livros vinculados a ele.`
+                );
+            }
+            throw error;
         }
     }
 }

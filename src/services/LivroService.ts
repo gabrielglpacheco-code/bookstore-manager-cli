@@ -75,9 +75,19 @@ export class LivroService {
 
     async removerLivro(id: number): Promise<void> {
         await this.buscarLivroPorId(id);
-        const removido = await this.livroRepository.remover(id);
-        if (!removido) {
-            throw new Error(`Não foi possível remover o livro com id ${id}.`);
+
+        try {
+            const removido = await this.livroRepository.remover(id);
+            if (!removido) {
+                throw new Error(`Não foi possível remover o livro com id ${id}.`);
+            }
+        } catch (error: any) {
+            if (error.code === '23503') {
+                throw new Error(
+                    `Não é possível remover este livro pois existem empréstimos vinculados a ele.`
+                );
+            }
+            throw error;
         }
     }
 }

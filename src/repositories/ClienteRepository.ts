@@ -79,7 +79,6 @@ export class ClienteRepository {
             const resultado = await pool.query(query, [id]);
             return (resultado.rowCount ?? 0) > 0;
         } catch (error) {
-            console.error('Erro ao remover cliente:', error);
             throw error;
         }
     }
