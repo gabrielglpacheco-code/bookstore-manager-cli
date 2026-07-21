@@ -173,3 +173,6 @@ Autor cadastrado com sucesso! ID: 1
 
 - Gabriel Guarnieri Lisboa Pacheco
 
+## Vídeo de apresentação
+
+[Link do vídeo](https://www.youtube.com/watch?v=6Hfj72jZjhY)
